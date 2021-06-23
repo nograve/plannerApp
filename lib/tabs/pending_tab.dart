@@ -4,7 +4,7 @@ import 'package:planner/classes/plan_io.dart';
 import '../classes/plans_type.dart';
 import '../classes/plan.dart';
 import '../containers/pending_plan_container.dart';
-import '../plan_input_form.dart';
+import '../forms/plan_input_form.dart';
 import '../classes/plans_lists.dart';
 
 class PendingTab extends StatefulWidget {

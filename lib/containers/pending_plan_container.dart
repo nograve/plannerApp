@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:planner/plan_input_form.dart';
+import 'package:planner/forms/plan_input_form.dart';
 import 'package:planner/classes/plan_io.dart';
 import 'package:planner/classes/plans_type.dart';
 import '../classes/plan.dart';

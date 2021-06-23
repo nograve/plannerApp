@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:planner/classes/plan_io.dart';
 import 'package:planner/classes/plans_type.dart';
-import 'classes/plan.dart';
-import 'classes/plans_lists.dart';
+import '../classes/plan.dart';
+import '../classes/plans_lists.dart';
 
 class PlanInputForm extends StatefulWidget {
   PlanInputForm({this.plan});
