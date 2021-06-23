@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:planner/plan_io.dart';
-import 'plans_type.dart';
-import 'plan.dart';
-import 'pending_plan_container.dart';
-import 'plan_input_form.dart';
-import 'plans_lists.dart';
+import '../plans_type.dart';
+import '../plan.dart';
+import '../pending_plan_container.dart';
+import '../plan_input_form.dart';
+import '../plans_lists.dart';
 
 class PendingTab extends StatefulWidget {
   @override

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'pending_tab.dart';
-import 'done_tab.dart';
-import 'undone_tab.dart';
+import 'tabs/pending_tab.dart';
+import 'tabs/done_tab.dart';
+import 'tabs/undone_tab.dart';
 
 class MyApp extends StatelessWidget {
   @override
