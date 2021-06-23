@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:planner/plan_io.dart';
-import 'package:planner/plans_type.dart';
-import '../plan.dart';
-import '../plans_lists.dart';
+import 'package:planner/classes/plan_io.dart';
+import 'package:planner/classes/plans_type.dart';
+import '../classes/plan.dart';
+import '../classes/plans_lists.dart';
 import '../containers/undone_plan_container.dart';
 
 class UndoneTab extends StatefulWidget {

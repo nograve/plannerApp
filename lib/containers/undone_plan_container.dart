@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../plan.dart';
+import '../classes/plan.dart';
 
 class UndonePlanContainer extends StatelessWidget {
   UndonePlanContainer(this.plan);

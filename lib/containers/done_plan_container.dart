@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../plan.dart';
+import '../classes/plan.dart';
 
 class DonePlanContainer extends StatelessWidget {
   DonePlanContainer(this.plan);
