@@ -3,7 +3,7 @@ import 'package:planner/plan_io.dart';
 import 'package:planner/plans_type.dart';
 import '../plan.dart';
 import '../plans_lists.dart';
-import '../done_plan_container.dart';
+import '../containers/done_plan_container.dart';
 
 class DoneTab extends StatefulWidget {
   @override

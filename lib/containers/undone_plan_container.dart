@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'plan.dart';
+import '../plan.dart';
 
-class DonePlanContainer extends StatelessWidget {
-  DonePlanContainer(this.plan);
+class UndonePlanContainer extends StatelessWidget {
+  UndonePlanContainer(this.plan);
   final Plan plan;
 
   @override
@@ -13,7 +13,7 @@ class DonePlanContainer extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.green),
+        border: Border.all(color: Colors.red),
       ),
       child: Column(
         children: [
@@ -32,7 +32,7 @@ class DonePlanContainer extends StatelessWidget {
             child: Text(
               dueDate,
               style: TextStyle(
-                color: Colors.green,
+                color: Colors.red,
               ),
             ),
           ),
