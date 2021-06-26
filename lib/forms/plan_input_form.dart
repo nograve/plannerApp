@@ -5,19 +5,19 @@ import '../classes/plan.dart';
 import '../classes/plans_lists.dart';
 
 class PlanInputForm extends StatefulWidget {
-  PlanInputForm({this.plan});
+  const PlanInputForm({this.plan});
 
   final Plan plan;
 
   @override
-  _PlanInputFormState createState() => _PlanInputFormState(plan: plan);
+  _PlanInputFormState createState() => _PlanInputFormState();
 }
 
 class _PlanInputFormState extends State<PlanInputForm> {
   _PlanInputFormState({this.plan}) {
     //Remember if plan is new created or edited.
     if (plan == null) {
-      plan = Plan('', DateTime.now().add(Duration(minutes: 10)));
+      plan = Plan('', DateTime.now().add(const Duration(minutes: 10)));
       _isEditing = false;
     } else {
       _isEditing = true;
@@ -36,18 +36,18 @@ class _PlanInputFormState extends State<PlanInputForm> {
   String _minute;
   String _time;
   bool _isEditing;
-  List<Plan> _pendingPlans = PlansLists.pendingPlans;
+  final List<Plan> _pendingPlans = PlansLists.pendingPlans;
   @override
   Widget build(BuildContext context) {
     //Make time look nicer when hour or minute less than 10
     if (_tempDueTime.hour.toString().length == 1) {
-      _hour = '0' + _tempDueDate.hour.toString();
+      _hour = '0${_tempDueDate.hour}';
     } else {
       _hour = _tempDueTime.hour.toString();
     }
 
     if (_tempDueTime.minute.toString().length == 1) {
-      _minute = '0' + _tempDueDate.minute.toString();
+      _minute = '0${_tempDueDate.minute}';
     } else {
       _minute = _tempDueTime.minute.toString();
     }
@@ -56,8 +56,7 @@ class _PlanInputFormState extends State<PlanInputForm> {
     ////////////////////////////////////
     return MaterialApp(
       home: Scaffold(
-        body: Container(
-          child: Form(
+        body: Form(
             key: _formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -65,7 +64,7 @@ class _PlanInputFormState extends State<PlanInputForm> {
                 //Task description
                 TextFormField(
                   initialValue: _tempTask,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     icon: Icon(Icons.edit),
                     hintText: 'Ex. Make a coffee',
                     labelText: 'Task description',
@@ -80,17 +79,17 @@ class _PlanInputFormState extends State<PlanInputForm> {
                 ),
                 Container(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 10),
                   child: Column(
                     children: [
                       //Date picker
-                      Text(
+                      const Text(
                         'Date:',
                         style: TextStyle(fontSize: 24),
                       ),
                       Text(
                         '${_tempDueDate.month}/${_tempDueDate.day}/${_tempDueDate.year}',
-                        style: TextStyle(fontSize: 24),
+                        style: const TextStyle(fontSize: 24),
                       ),
                       TextButton(
                         onPressed: () {
@@ -99,7 +98,7 @@ class _PlanInputFormState extends State<PlanInputForm> {
                               initialDate: _tempDueDate,
                               firstDate: DateTime.now(),
                               lastDate: DateTime.now().add(
-                                Duration(days: 3650),
+                                const Duration(days: 3650),
                               )).then((date) {
                             setState(() {
                               if (date != null) {
@@ -108,32 +107,32 @@ class _PlanInputFormState extends State<PlanInputForm> {
                             });
                           });
                         },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(Icons.calendar_today),
-                            Text('Pick the date'),
-                          ],
-                        ),
                         style: ButtonStyle(
                           backgroundColor:
                               MaterialStateProperty.all(Colors.blue),
                           foregroundColor:
                               MaterialStateProperty.all(Colors.white),
                         ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: const [
+                            Icon(Icons.calendar_today),
+                            Text('Pick the date'),
+                          ],
+                        ),
                       ),
                       //Time picker
                       Padding(
-                        padding: EdgeInsets.only(top: 10),
+                        padding: const EdgeInsets.only(top: 10),
                         child: Column(
                           children: [
-                            Text(
+                            const Text(
                               'Time:',
                               style: TextStyle(fontSize: 24),
                             ),
                             Text(
                               _time,
-                              style: TextStyle(fontSize: 24),
+                              style: const TextStyle(fontSize: 24),
                             ),
                             TextButton(
                               onPressed: () {
@@ -159,18 +158,18 @@ class _PlanInputFormState extends State<PlanInputForm> {
                                   });
                                 });
                               },
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(Icons.timer),
-                                  Text('Pick the time'),
-                                ],
-                              ),
                               style: ButtonStyle(
                                 backgroundColor:
                                     MaterialStateProperty.all(Colors.blue),
                                 foregroundColor:
                                     MaterialStateProperty.all(Colors.white),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: const [
+                                  Icon(Icons.timer),
+                                  Text('Pick the time'),
+                                ],
                               ),
                             ),
                           ],
@@ -181,7 +180,7 @@ class _PlanInputFormState extends State<PlanInputForm> {
                 ),
                 //Submit button
                 Padding(
-                  padding: EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 10),
                   child: TextButton(
                     onPressed: () {
                       //Validates the whole form, prints error if need to correct
@@ -202,22 +201,21 @@ class _PlanInputFormState extends State<PlanInputForm> {
                         Navigator.pop(context); //Return to home page
                       }
                     },
-                    child: Text(
-                      'Submit',
-                      style: TextStyle(fontSize: 20),
-                    ),
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(Colors.blue),
                         foregroundColor:
                             MaterialStateProperty.all(Colors.white),
                         minimumSize: MaterialStateProperty.all(
                             Size(MediaQuery.of(context).size.width, 60))),
+                    child: const Text(
+                      'Submit',
+                      style: TextStyle(fontSize: 20),
+                    ),
                   ),
                 )
               ],
             ),
           ),
-        ),
       ),
     );
   }

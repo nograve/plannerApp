@@ -12,8 +12,8 @@ class UndoneTab extends StatefulWidget {
 }
 
 class _UndoneTabState extends State<UndoneTab> {
-  List<Plan> _pendingPlans = PlansLists.pendingPlans;
-  List<Plan> _undonePlans = PlansLists.undonePlans;
+  final List<Plan> _pendingPlans = PlansLists.pendingPlans;
+  final List<Plan> _undonePlans = PlansLists.undonePlans;
   Timer _timer;
 
   @override
@@ -21,7 +21,7 @@ class _UndoneTabState extends State<UndoneTab> {
     super.initState();
 
     //Constantly updates undone tasks
-    _timer = Timer.periodic(Duration(milliseconds: 100), (timer) {
+    _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
       setState(() {
         _pendingPlans.removeWhere((plan) {
           //Delete dued plans and move them to undone
@@ -60,20 +60,18 @@ class _UndoneTabState extends State<UndoneTab> {
           child: ListView.builder(
               itemCount: _undonePlans.length,
               itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  child: UndonePlanContainer(_undonePlans[index]),
-                );
+                return  UndonePlanContainer(_undonePlans[index]);
               }),
         ),
         TextButton(
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.white),
               foregroundColor: MaterialStateProperty.all(Colors.black),
-              shape: MaterialStateProperty.all(ContinuousRectangleBorder()),
+              shape: MaterialStateProperty.all(const ContinuousRectangleBorder()),
               minimumSize: MaterialStateProperty.all(
                   Size(MediaQuery.of(context).size.width, 50))),
           onPressed: _clearPlans,
-          child: Icon(Icons.delete),
+          child: const Icon(Icons.delete),
         ),
       ],
     );

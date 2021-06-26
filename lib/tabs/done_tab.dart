@@ -11,7 +11,7 @@ class DoneTab extends StatefulWidget {
 }
 
 class _DoneTabState extends State<DoneTab> {
-  List<Plan> _donePlans = PlansLists.donePlans;
+  final List<Plan> _donePlans = PlansLists.donePlans;
 
   void _clearPlans() {
     setState(() {
@@ -28,20 +28,18 @@ class _DoneTabState extends State<DoneTab> {
           child: ListView.builder(
               itemCount: _donePlans.length,
               itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  child: DonePlanContainer(_donePlans[index]),
-                );
+                return DonePlanContainer(_donePlans[index]);
               }),
         ),
         TextButton(
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.white),
               foregroundColor: MaterialStateProperty.all(Colors.black),
-              shape: MaterialStateProperty.all(ContinuousRectangleBorder()),
+              shape: MaterialStateProperty.all(const ContinuousRectangleBorder()),
               minimumSize: MaterialStateProperty.all(
                   Size(MediaQuery.of(context).size.width, 50))),
           onPressed: _clearPlans,
-          child: Icon(Icons.delete),
+          child: const Icon(Icons.delete),
         ),
       ],
     );

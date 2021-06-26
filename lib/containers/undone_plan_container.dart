@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import '../classes/plan.dart';
 
 class UndonePlanContainer extends StatelessWidget {
-  UndonePlanContainer(this.plan);
+  const UndonePlanContainer(this.plan);
   final Plan plan;
 
   @override
   Widget build(BuildContext context) {
     //Make the date look nicer
-    String dueDate =
+    final String dueDate =
         '${plan.dueDate.month}/${plan.dueDate.day}/${plan.dueDate.year} ${plan.dueDate.hour}:${plan.dueDate.minute}';
 
     return Container(
@@ -18,11 +18,11 @@ class UndonePlanContainer extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.only(bottom: 5),
+            padding: const EdgeInsets.only(bottom: 5),
             alignment: Alignment.topLeft,
             child: Text(
               plan.task,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
               ),
             ),
@@ -31,7 +31,7 @@ class UndonePlanContainer extends StatelessWidget {
             alignment: Alignment.topLeft,
             child: Text(
               dueDate,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.red,
               ),
             ),

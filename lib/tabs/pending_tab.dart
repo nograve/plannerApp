@@ -1,11 +1,13 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:planner/classes/plan_io.dart';
-import '../classes/plans_type.dart';
+
 import '../classes/plan.dart';
+import '../classes/plans_lists.dart';
+import '../classes/plans_type.dart';
 import '../containers/pending_plan_container.dart';
 import '../forms/plan_input_form.dart';
-import '../classes/plans_lists.dart';
 
 class PendingTab extends StatefulWidget {
   @override
@@ -13,8 +15,8 @@ class PendingTab extends StatefulWidget {
 }
 
 class _PendingTabState extends State<PendingTab> {
-  List<Plan> _pendingPlans = PlansLists.pendingPlans;
-  List<Plan> _undonePlans = PlansLists.undonePlans;
+  final List<Plan> _pendingPlans = PlansLists.pendingPlans;
+  final List<Plan> _undonePlans = PlansLists.undonePlans;
   Timer _timer;
 
   @override
@@ -22,7 +24,7 @@ class _PendingTabState extends State<PendingTab> {
     super.initState();
 
     //Update the list of pending plans
-    _timer = Timer.periodic(Duration(milliseconds: 100), (timer) {
+    _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
       setState(() {
         _pendingPlans.removeWhere((plan) {
           //Delete dued plans and move them to undone
@@ -52,7 +54,7 @@ class _PendingTabState extends State<PendingTab> {
       context,
       MaterialPageRoute(
         builder: (context) {
-          return PlanInputForm();
+          return const PlanInputForm();
         },
       ),
     );
@@ -66,20 +68,18 @@ class _PendingTabState extends State<PendingTab> {
           child: ListView.builder(
               itemCount: _pendingPlans.length,
               itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  child: PendingPlanContainer(_pendingPlans[index]),
-                );
+                return PendingPlanContainer(_pendingPlans[index]);
               }),
         ),
         TextButton(
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.white),
               foregroundColor: MaterialStateProperty.all(Colors.black),
-              shape: MaterialStateProperty.all(ContinuousRectangleBorder()),
+              shape: MaterialStateProperty.all(const ContinuousRectangleBorder()),
               minimumSize: MaterialStateProperty.all(
                   Size(MediaQuery.of(context).size.width, 50))),
           onPressed: _onPlusButtonPressed,
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
         ),
       ],
     );

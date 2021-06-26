@@ -1,33 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:planner/forms/plan_input_form.dart';
 import 'package:planner/classes/plan_io.dart';
 import 'package:planner/classes/plans_type.dart';
-import '../classes/plan.dart';
+import 'package:planner/forms/plan_input_form.dart';
+
 import '../classes/options.dart';
+import '../classes/plan.dart';
 import '../classes/plans_lists.dart';
 
 class PendingPlanContainer extends StatefulWidget {
-  PendingPlanContainer(this._plan);
+  const PendingPlanContainer(this._plan);
 
   final Plan _plan;
 
   @override
-  _PendingPlanContainerState createState() => _PendingPlanContainerState(_plan);
+  _PendingPlanContainerState createState() => _PendingPlanContainerState();
 }
 
 class _PendingPlanContainerState extends State<PendingPlanContainer> {
-  _PendingPlanContainerState(this._plan);
-
-  Plan _plan;
-  List<Plan> _donePlans = PlansLists.donePlans;
-  List<Plan> _pendingPlans = PlansLists.pendingPlans;
+  final List<Plan> _donePlans = PlansLists.donePlans;
+  final List<Plan> _pendingPlans = PlansLists.pendingPlans;
 
   //On tapping the container you can choose whether make the plan done,
   //edit it or delete it.
-  void choiceAction(Container choice) {
+  void choiceAction(Row choice) {
     if (choice == Options.makeDone) {
-      _donePlans.add(_plan);
-      _pendingPlans.remove(_plan);
+      _donePlans.add(widget._plan);
+      _pendingPlans.remove(widget._plan);
       PlanIO.writePlans(_pendingPlans, PlansType.pendings);
       PlanIO.writePlans(_donePlans, PlansType.dones);
     } else if (choice == Options.edit) {
@@ -36,13 +34,13 @@ class _PendingPlanContainerState extends State<PendingPlanContainer> {
         MaterialPageRoute(
           builder: (context) {
             return PlanInputForm(
-              plan: _plan,
+              plan: widget._plan,
             );
           },
         ),
       );
     } else if (choice == Options.remove) {
-      _pendingPlans.remove(_plan);
+      _pendingPlans.remove(widget._plan);
       PlanIO.writePlans(_pendingPlans, PlansType.pendings);
     }
   }
@@ -50,7 +48,7 @@ class _PendingPlanContainerState extends State<PendingPlanContainer> {
   @override
   Widget build(BuildContext context) {
     //Evaluate remaining time
-    Duration timeRemaining = _plan.dueDate.difference(DateTime.now());
+    final Duration timeRemaining = widget._plan.dueDate.difference(DateTime.now());
     String timeRemainder = '';
     if (timeRemaining.inDays > 0) {
       timeRemainder =
@@ -62,10 +60,10 @@ class _PendingPlanContainerState extends State<PendingPlanContainer> {
       timeRemainder = 'Due in ${timeRemaining.inMinutes % 60} minutes.';
     }
 
-    return PopupMenuButton<Container>(
+    return PopupMenuButton<Row>(
       itemBuilder: (BuildContext context) {
-        return Options.choices.map((Container choice) {
-          return PopupMenuItem<Container>(
+        return Options.choices.map((Row choice) {
+          return PopupMenuItem<Row>(
             value: choice,
             child: choice,
           );
@@ -79,11 +77,11 @@ class _PendingPlanContainerState extends State<PendingPlanContainer> {
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.only(bottom: 5),
+              padding: const EdgeInsets.only(bottom: 5),
               alignment: Alignment.topLeft,
               child: Text(
-                _plan.task,
-                style: TextStyle(
+                widget._plan.task,
+                style: const TextStyle(
                   fontSize: 20,
                   color: Colors.black,
                 ),
@@ -93,7 +91,7 @@ class _PendingPlanContainerState extends State<PendingPlanContainer> {
               alignment: Alignment.topLeft,
               child: Text(
                 timeRemainder,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.blue,
                 ),
               ),

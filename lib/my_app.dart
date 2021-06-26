@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'tabs/pending_tab.dart';
 import 'tabs/done_tab.dart';
+import 'tabs/pending_tab.dart';
 import 'tabs/undone_tab.dart';
 
 class MyApp extends StatelessWidget {
@@ -13,12 +13,12 @@ class MyApp extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.grey[100],
           appBar: AppBar(
-            title: Text(
+            title: const Text(
               'Planner',
               style: TextStyle(color: Colors.black),
             ),
             backgroundColor: Colors.white,
-            bottom: TabBar(
+            bottom: const TabBar(
               tabs: [
                 Tab(
                   child: Text(

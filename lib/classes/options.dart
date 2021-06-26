@@ -2,41 +2,35 @@ import 'package:flutter/material.dart';
 
 //Options that appear when you tap on a pending plan container
 class Options {
-  static Container makeDone = Container(
-    child: Row(
-      children: [
+  static Row makeDone = Row(
+      children: const [
         Icon(
           Icons.done,
           color: Colors.green,
         ),
         Text('Done!'),
       ],
-    ),
-  );
-  static Container edit = Container(
-    child: Row(
+    );
+  static Row edit = Row(
       children: [
         Icon(
           Icons.edit,
           color: Colors.brown[700],
         ),
-        Text('Edit'),
+        const Text('Edit'),
       ],
-    ),
   );
-  static Container remove = Container(
-    child: Row(
-      children: [
+  static Row remove = Row(
+      children: const [
         Icon(
           Icons.delete,
           color: Colors.red,
         ),
         Text('Remove'),
       ],
-    ),
   );
 
-  static List<Container> choices = <Container>[
+  static List<Row> choices = <Row>[
     makeDone,
     edit,
     remove,
